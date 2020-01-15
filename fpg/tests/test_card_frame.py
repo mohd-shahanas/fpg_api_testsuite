@@ -2,6 +2,7 @@ import pytest
 import requests
 
 from dynaconf import settings as conf
+from pytest_testrail.plugin import pytestrail
 
 from fpg.common import assertions
 from fpg.library import fpg_payloads
@@ -10,9 +11,9 @@ from fpg.library import fpg_payloads
 @pytest.mark.parametrize(
     ("rating", "platform", "exp_status_code"),
     [
-        pytest.param(1, 1, requests.codes.ok, marks=pytest.mark.smoke,),
-        pytest.param(5, 3, requests.codes.internal_server_error, marks=pytest.mark.regression,),
-        pytest.param(7,1, requests.codes.internal_server_error,marks=pytest.mark.regression,),
+        pytest.param(1, 1, requests.codes.ok, marks=[pytest.mark.smoke, pytest.mark.testrail(ids=('3',))]),
+        pytest.param(5, 3, requests.codes.internal_server_error, marks=[pytest.mark.regression, pytest.mark.testrail(ids=('4',))]),
+        pytest.param(7, 1, requests.codes.internal_server_error,marks=[pytest.mark.regression, pytest.mark.testrail(ids=('5',))]),
     ],
     ids=[
         "with_valid_rating_and_platform",
