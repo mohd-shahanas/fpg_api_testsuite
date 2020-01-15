@@ -1,0 +1,18 @@
+[default]
+
+base_url = "https://qa-app.fpg-ingauge.com/pulse/api/"
+bearer_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDgxMjgxMDIsInVzZXJfbmFtZSI6IjI5ODQwIiwianRpIjoiYzNhNTBmMGItNWJjZC00NWZiLWE2MTEtYjczZjE1NDUxZWQ4IiwiY2xpZW50X2lkIjoicmVzdGFwcCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSIsInRydXN0Il19.g2CDJgbfr64XHX_4FmD1QD6t_x16IKdljdvtIVBKQvI"
+industry_id = 1
+private_key_path="C:\\Users\\AL2516\\Downloads\\FPG-DEV-CLUSTER.pem"
+
+sql_hostname = '172.70.73.89'
+sql_username = 'root'
+sql_password = 'CDROMdvd1'
+sql_main_database = 'in_gauge_2018_1710_hotel'
+sql_port = 30066
+ssh_host = '10.200.29.208'
+ssh_user = 'ubuntu'
+ssh_port = 22
+
+[dev]
+
