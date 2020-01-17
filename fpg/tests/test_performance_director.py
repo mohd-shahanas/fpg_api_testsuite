@@ -35,7 +35,7 @@ def test_get_quote_currency(fpg_client_fix, fpg_db_fix, country_id):
 
     # DB validation
 
-    query = f'''select currency from in_gauge_2018_1710_hotel.region where id={country_id};'''
+    query = f'''select currency from {conf.SQL_MAIN_DATABASE}.region where id={country_id};'''
     data = pd.read_sql_query(query, fpg_db_fix.conn)
     print(f"Querying DB")
     print(data["currency"])
