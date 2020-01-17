@@ -12,7 +12,6 @@ def fpg_client_fix():
 
     The scope of the fixture is for the entire session of a test run.
     """
-    print("In fpg_client_fix")
     return FpgClient()
 
 
@@ -23,10 +22,10 @@ def fpg_db_fix():
 
     The scope of the fixture is for the entire session of a test run.
     """
-    print("In fpg_db_fix")
+    print("Establishing DB connection")
     fpg_db = FpgDB()
     yield fpg_db
-    print("In fpg_db_fix_after_yield")
+    print("Dropping the DB ")
     fpg_db.drop_db_connection()
 
 

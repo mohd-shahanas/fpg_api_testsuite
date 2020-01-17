@@ -7,7 +7,6 @@ from dynaconf import settings as conf
 
 class FpgDB:
     def __init__(self):
-        print("In fpg_db_init")
         self.mypkey = paramiko.RSAKey.from_private_key_file(conf.PRIVATE_KEY_PATH)
         self.sql_hostname = conf.SQL_HOSTNAME
         self.sql_username = conf.SQL_USERNAME
@@ -20,7 +19,6 @@ class FpgDB:
         self.conn = None
         self.tunnel = None
         self.establish_db_connection()
-
 
     def establish_db_connection(self):
         self.tunnel = SSHTunnelForwarder((self.ssh_host, self.ssh_port),
