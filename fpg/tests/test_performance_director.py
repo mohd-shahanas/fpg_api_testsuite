@@ -42,6 +42,39 @@ def test_get_quote_currency(fpg_client_fix, fpg_db_fix, country_id):
     #assertions.assert_equal(200,200)
 
 
+@pytest.mark.parametrize(
+    "params",
+    [
+        pytest.param(
+            ['metricsDateType: Departure'],
+            marks=pytest.mark.smoke
+        ),
+        pytest.param(
+            ['metricsDateType: Arrival'],
+            marks=pytest.mark.regression
+        ),
+        pytest.param(
+            ['parentRegionId: null'],
+            marks=pytest.mark.regression
+        ),
+        pytest.param(
+            ['parentRegionId: 2'],
+            marks=pytest.mark.regression
+        )
+    ],
+    ids=[
+        "metricsDateType_Departure",
+        "metricsDateType_Arrival",
+        "parentRegionId_null",
+        "parentRegionId_2"
+    ],
+)
+def test_regional_performance(fpg_client_fix,params):
+    url = conf.BASE_URL + 'graphql/pm/secure/regions/performance'
+    payload = fpg_payloads.get_regional_performance_payload(params=params)
+
+    response = fpg_client_fix.post(url=url, data=payload)
+    assertions.assert_equal(response.status_code, requests.codes.ok)
 
 
 

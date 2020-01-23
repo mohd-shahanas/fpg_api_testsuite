@@ -44,14 +44,14 @@ class LoggingHTTPAdapter(requests.adapters.HTTPAdapter):
     """Adapter to log request and response."""
 
     def send(self, request, *args, **kwargs):
-        log.info(f"Request: {request.method} {request.url}")
-        log.info(f"Request headers: {request.headers}")
-        log.info(f"Request body: {request.body}")
+        log.debug(f"Request: {request.method} {request.url}")
+        log.debug(f"Request headers: {request.headers}")
+        log.debug(f"Request body: {request.body}")
 
         resp = super().send(request, *args, **kwargs)
 
-        log.info(f"Response: {resp.status_code} {resp.reason}")
-        log.info(f"Response headers: {resp.headers}")
-        log.info(f"Response body: {resp.content}")
+        log.debug(f"Response: {resp.status_code} {resp.reason}")
+        log.debug(f"Response headers: {resp.headers}")
+        log.debug(f"Response body: {resp.content}")
 
         return resp
