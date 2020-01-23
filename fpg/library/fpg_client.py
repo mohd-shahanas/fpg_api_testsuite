@@ -45,13 +45,15 @@ class LoggingHTTPAdapter(requests.adapters.HTTPAdapter):
 
     def send(self, request, *args, **kwargs):
         log.debug(f"Request: {request.method} {request.url}")
-        log.debug(f"Request headers: {request.headers}")
+        log.debug(f"***************** Request *********************")
+        #log.debug(f"Request headers: {request.headers}")
         log.debug(f"Request body: {request.body}")
 
         resp = super().send(request, *args, **kwargs)
-
+        log.debug(f"**************************************")
         log.debug(f"Response: {resp.status_code} {resp.reason}")
-        log.debug(f"Response headers: {resp.headers}")
+        #log.debug(f"Response headers: {resp.headers}")
+        log.debug(f"***************** Response *********************")
         log.debug(f"Response body: {resp.content}")
 
         return resp
