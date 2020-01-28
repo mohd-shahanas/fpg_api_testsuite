@@ -1,12 +1,14 @@
 import pytest
 import requests
+import logging
+
 
 from dynaconf import settings as conf
 from pytest_testrail.plugin import pytestrail
 
 from fpg.common import assertions
 from fpg.library import fpg_payloads
-
+log = logging.getLogger(__name__)
 
 @pytest.mark.parametrize(
     ("rating", "platform", "exp_status_code"),
@@ -22,9 +24,11 @@ from fpg.library import fpg_payloads
     ],
 )
 def test_is_card_useful(fpg_client_fix,rating,platform,exp_status_code):
+    log.info(f"Testing Is Card Useful API with rating - {} , platform - {}".format(rating,platform))
     url = conf.BASE_URL + 'cardUsefulSuggestion/secure'
 
     payload = fpg_payloads.get_card_useful_payload(rating=rating,platform=platform)
 
     response = fpg_client_fix.post(url=url,data=payload)
     assertions.assert_equal(response.status_code,exp_status_code)
+    log.info("Is Card Useful Test passed")
