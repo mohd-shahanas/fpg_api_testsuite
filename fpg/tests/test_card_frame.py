@@ -24,7 +24,7 @@ log = logging.getLogger(__name__)
     ],
 )
 def test_is_card_useful(fpg_client_fix,rating,platform,exp_status_code):
-    log.info(f"Testing Is Card Useful API with rating - {} , platform - {}".format(rating,platform))
+    log.info(f"Testing Is Card Useful API with rating - {rating} , platform - {platform}")
     url = conf.BASE_URL + 'cardUsefulSuggestion/secure'
 
     payload = fpg_payloads.get_card_useful_payload(rating=rating,platform=platform)
